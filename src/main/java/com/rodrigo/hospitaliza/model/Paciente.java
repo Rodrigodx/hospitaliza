@@ -18,7 +18,7 @@ public class Paciente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@NotNull
 	@Column(name = "name", nullable = false, length = 80)
@@ -35,11 +35,11 @@ public class Paciente {
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -22,8 +22,12 @@ public class PacienteRepository implements Serializable {
 	
 	@Transactional
 	public Paciente save(Paciente paciente) {
+		if(paciente.getId() == null) {	
 			em.persist(paciente);
-			return paciente;
+			return paciente;			
+		}else {
+			return em.merge(paciente);
+		}
 	}
 	
 	public List<Paciente> findAll() {
@@ -50,8 +54,8 @@ public class PacienteRepository implements Serializable {
 	}
 	
 	@Transactional
-	public void update(Long id, Paciente paciente) {
-		em.merge(paciente);
+	public Paciente update(Paciente paciente) {
+		return em.merge(paciente);
 	}
 	
 	@Transactional
