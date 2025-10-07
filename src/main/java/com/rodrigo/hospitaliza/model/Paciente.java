@@ -1,6 +1,5 @@
 package com.rodrigo.hospitaliza.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,9 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-
-import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.br.CPF;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Paciente {
@@ -23,11 +20,11 @@ public class Paciente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotEmpty
+	@NotNull
 	@Column(name = "name", nullable = false, length = 80)
 	private String name;
 	
-	@CPF
+	@Pattern(regexp = "(^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$)|(^\\d{11}$)", message = "CPF deve seguir o formato XXX.XXX.XXX-XX ou ser apenas números")
 	@Column(name = "name", nullable = false, length = 11)
 	@NotNull
 	private String cpf;
