@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      
+<h:head>
+
+<meta charset="UTF-8"/>
+<title>Hospitaliza</title>
+
+
+
+</h:head>
+
+<h:body>
+
+	<h:form>
+		<div class="ui-fluid p-formgrid p-grid">
+			<div class="p-field p-col-12 p-md-6">
+        		<p:outputLabel for="nome" value="Nome" />
+        		<p:inputText id="nome" value="#{cadastroPacienteBean.paciente.nome}" />
+    		</div>
+    		<div class="p-field p-col-12 p-md-6">
+        		<p:outputLabel for="cpf" value="CPF"/>
+        		<p:inputMask value="#{cadastroPacienteBean.paciente.cpf}" mask="999.999.999-99" id="cpf"/>
+    		</div>
+    		<div class="p-field p-col-12 p-md-6">
+        		<p:outputLabel for="data_nascimento" value="Data de Nascimento" />
+        		<p:calendar id="data_nascimento" pattern="dd/MM/yyyy" mask="true" value="#{cadastroPacienteBean.paciente.dataNascimento}" />
+    		</div>
+    		<h:outputLabel />
+			<p:commandButton id="salvar" value="Salvar" actionListener="#{cadastroPacienteBean.salvar}" />
+		</div>
+	</h:form>
+</h:body>
+
+</html>

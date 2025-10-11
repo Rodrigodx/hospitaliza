@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.resource.spi.IllegalStateException;
 import javax.transaction.Transactional;
 
 import com.rodrigo.hospitaliza.model.Paciente;
@@ -21,6 +20,15 @@ public class PacienteService implements Serializable {
 	
 	@Transactional
 	public Paciente save(Paciente paciente) {
+		
+		String cpfComMascara = paciente.getCpf();
+		
+		if(cpfComMascara != null) {
+			String cpfFormatado = cpfComMascara.replaceAll("[^0-9]", "");
+			
+			paciente.setCpf(cpfFormatado);
+		}
+		
 		return repository.save(paciente);
 	}
 	
@@ -39,7 +47,7 @@ public class PacienteService implements Serializable {
 	@Transactional
 	public Paciente update(Paciente paciente) {
 		
-		if(paciente.getId() == null || repository.findById(paciente.getId() == null)) {
+		if(paciente.getId() == null || repository.findById(paciente.getId()) == null) {
 			throw new IllegalArgumentException("Paciente não encontrado.");
 		}
 		

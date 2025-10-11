@@ -21,11 +21,11 @@ public class Paciente {
 	private Long id;
 	
 	@NotNull
-	@Column(name = "name", nullable = false, length = 80)
-	private String name;
+	@Column(name = "nome", nullable = false, length = 80)
+	private String nome;
 	
 	@Pattern(regexp = "(^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$)|(^\\d{11}$)", message = "CPF deve seguir o formato XXX.XXX.XXX-XX ou ser apenas números")
-	@Column(name = "name", nullable = false, length = 11)
+	@Column(name = "cpf", nullable = false, length = 11)
 	@NotNull
 	private String cpf;
 	
@@ -43,12 +43,12 @@ public class Paciente {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getCpf() {
