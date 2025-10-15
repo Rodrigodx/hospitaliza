@@ -1,12 +1,16 @@
 package com.rodrigo.hospitaliza.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
@@ -46,6 +50,17 @@ public class Paciente {
 	
 	@Email
 	private String email;
+	
+	@OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Atendimento> atendimentos = new ArrayList<Atendimento>();
+
+	public List<Atendimento> getAtendimentos() {
+		return atendimentos;
+	}
+
+	public void setAtendimentos(List<Atendimento> atendimentos) {
+		this.atendimentos = atendimentos;
+	}
 
 	public String getEndereco() {
 		return endereco;

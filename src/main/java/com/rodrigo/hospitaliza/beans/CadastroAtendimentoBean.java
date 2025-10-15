@@ -31,6 +31,8 @@ public class CadastroAtendimentoBean implements Serializable{
 		
 		pacienteService.save(paciente);
 		
+		atendimento.setPaciente(pacienteService.findById(paciente.getId()));
+		
 		atendimentoService.save(atendimento);
 	}
 	

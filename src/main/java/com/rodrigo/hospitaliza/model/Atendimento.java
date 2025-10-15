@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import com.rodrigo.hospitaliza.enums.EspecialidadeEnum;
@@ -32,11 +34,9 @@ public class Atendimento {
 	private LocalTime horaDeFim;
 	
 	@Enumerated(EnumType.ORDINAL)
-	@NotNull
 	private PrioridadeEnum prioridade;
 	
 	@Enumerated(EnumType.STRING)
-	@NotNull
 	private StatusEnum status;
 	
 	@Enumerated(EnumType.STRING)
@@ -49,6 +49,26 @@ public class Atendimento {
 	@Column(name = "observacoes", length = 255)
 	private String observacoes;
 	
+	@ManyToOne
+	@JoinColumn(name = "paciente_id")
+	private Paciente paciente;
+	
+	public LocalDate getDataAtendimento() {
+		return dataAtendimento;
+	}
+
+	public void setDataAtendimento(LocalDate dataAtendimento) {
+		this.dataAtendimento = dataAtendimento;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
 	public Atendimento() {
 		
 	}
@@ -147,6 +167,4 @@ public class Atendimento {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
-	
-	
 }
