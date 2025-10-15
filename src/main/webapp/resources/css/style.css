@@ -1,0 +1,40 @@
+.card-form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+    max-width: 500px;
+    margin: 2rem auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-header {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #444;
+    border-bottom: 2px solid #007ad9;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.section{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.btn {
+    margin-top: 1.5rem;
+    background-color: #007ad9 !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    border-radius: 6px !important;
+    transition: 0.3s;
+    max-width: 500px;
+}
+
+.btn:hover {
+    background-color: #005fa3 !important;
+}
+

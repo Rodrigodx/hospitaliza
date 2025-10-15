@@ -10,8 +10,7 @@ import com.rodrigo.hospitaliza.model.Paciente;
 import com.rodrigo.hospitaliza.service.PacienteService;
 
 
-@Named
-@ViewScoped
+
 public class CadastroPacienteBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

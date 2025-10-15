@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+
+	<meta charset="UTF-8" />
+	<title>Hospitaliza</title>
+	<h:outputStylesheet name="style.css" library="css" />
+
+</h:head>
+
+<h:body>
+	<h:form id="form" styleClass="card-form">
+		<div class="card-header">Informações Pessoais</div>
+
+		<div class="section">
+			<p:panelGrid columns="1" styleClass="ui-noborder">			
+				<p:outputLabel for="nome" value="Nome" style="paggind:none" />
+				<p:inputText id="nome" value="#{cadastroAtendimentoBean.paciente.nome}" maxlength="80" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">			
+				<p:outputLabel for="cpf" value="CPF" />
+				<p:inputMask value="#{cadastroAtendimentoBean.paciente.cpf}"
+				mask="999.999.999-99" id="cpf" maxlength="11"/>
+			</p:panelGrid>
+			
+			<p:panelGrid columns="1" styleClass="ui-noborder">			
+				<p:outputLabel for="data_nascimento" value="Data de Nascimento" />
+				<p:calendar id="data_nascimento" pattern="dd/MM/yyyy" mask="true"
+					value="#{cadastroAtendimentoBean.paciente.dataNascimento}"/>
+			</p:panelGrid>	
+			
+			<p:panelGrid columns="1" styleClass="ui-noborder">			
+				<p:outputLabel for="endereco" value="Endereço" />
+				<p:inputText id="endereco" value="#{cadastroAtendimentoBean.paciente.endereco}" />
+			</p:panelGrid>
+			
+			<p:panelGrid columns="1" styleClass="ui-noborder">			
+				<p:outputLabel for="telefone" value="Telefone" />
+				<p:inputMask mask="(99) 9 9999-9999" id="telefone" value="#{cadastroAtendimentoBean.paciente.telefone}" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">			
+				<p:outputLabel for="email" value="E-mail" />
+				<p:inputText id="email" value="#{cadastroAtendimentoBean.paciente.email}" />
+			</p:panelGrid>
+
+			<p:outputLabel for="genero" value="Genêro" />
+			<p:selectOneRadio id="genero" layout="lineDirection" style="margin-bottom:10px">
+				<f:selectItem itemLabel="Masculino" itemValue="masculino" />
+				<f:selectItem itemLabel="Feminino" itemValue="feminino" />
+			</p:selectOneRadio>
+
+			<div class="card-header" style="width: 436px">Informações para Consulta</div>
+			
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="motivo" value="Motivo para Atendimento" />
+				<p:inputTextarea id="motivo" autoResize="true" style="width:400px" maxlength="255" value="#{cadastroAtendimentoBean.atendimento.motivoAtendimento}" />			
+			</p:panelGrid>
+
+			<p:commandButton id="salvar" value="Salvar"
+				actionListener="#{cadastroAtendimentoBean.iniciarAtendimento}"
+				styleClass="btn" style="width:200px; margin-bottom:10px;" />
+		</div>
+	</h:form>
+</h:body>
+
+</html>

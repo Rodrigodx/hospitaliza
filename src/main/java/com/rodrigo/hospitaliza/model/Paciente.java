@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -32,9 +33,45 @@ public class Paciente {
 	@Past
 	@Temporal(TemporalType.DATE)
 	@NotNull
-	@Column(name = "data_nascimento")
+	@Column(name = "data_nascimento", nullable = false)
 	private Date dataNascimento;
+	
+	@NotNull
+	@Column(name = "endereco", nullable = false, length = 80)
+	private String endereco;
+	
+	@NotNull
+	@Column(name = "telefone", nullable = false, length = 12)
+	private String telefone;
+	
+	@Email
+	private String email;
 
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	
 	public Long getId() {
 		return id;
 	}

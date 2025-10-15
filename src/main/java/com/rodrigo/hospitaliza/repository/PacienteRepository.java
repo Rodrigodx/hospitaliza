@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
-import javax.validation.constraints.NotEmpty;
 
 import com.rodrigo.hospitaliza.model.Paciente;
 
