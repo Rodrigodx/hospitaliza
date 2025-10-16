@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import com.rodrigo.hospitaliza.model.Paciente;
+import com.rodrigo.hospitaliza.repository.PacienteRepositoryDAO;
 import com.rodrigo.hospitaliza.repository.PacienteRepository;
 
 @ApplicationScoped
@@ -16,7 +17,10 @@ public class PacienteService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private PacienteRepository repository;
+	private PacienteRepositoryDAO repository;
+	
+	@Inject
+	private PacienteRepository pacienteRepository;
 	
 	@Transactional
 	public Paciente save(Paciente paciente) {
@@ -29,7 +33,7 @@ public class PacienteService implements Serializable {
 			paciente.setCpf(cpfFormatado);
 		}
 		
-		return repository.save(paciente);
+		return pacienteRepository.save(paciente);
 	}
 	
 	public List<Paciente> findAll() {
