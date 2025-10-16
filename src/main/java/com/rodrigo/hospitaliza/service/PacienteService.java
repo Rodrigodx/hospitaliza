@@ -16,50 +16,59 @@ public class PacienteService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject
-	private PacienteRepositoryDAO repository;
-	
+	/*
+	 * @Inject private PacienteRepositoryDAO repository;
+	 */
+
 	@Inject
 	private PacienteRepository pacienteRepository;
-	
+
 	@Transactional
 	public Paciente save(Paciente paciente) {
-		
+
 		String cpfComMascara = paciente.getCpf();
-		
-		if(cpfComMascara != null) {
+
+		if (cpfComMascara != null) {
 			String cpfFormatado = cpfComMascara.replaceAll("[^0-9]", "");
-			
+
 			paciente.setCpf(cpfFormatado);
 		}
-		
+
 		return pacienteRepository.save(paciente);
 	}
-	
+
 	public List<Paciente> findAll() {
-		return repository.findAll();
+		return pacienteRepository.findAll();
 	}
-	
+
 	public Paciente findById(Long id) {
-		return repository.findById(id);
+		return pacienteRepository.findBy(id);
 	}
-	
+
 	public Paciente findByCPF(String cpf) {
-		return repository.findByCPF(cpf);
+		return pacienteRepository.findByCpf(cpf);
 	}
-	
+
 	@Transactional
 	public Paciente update(Paciente paciente) {
-		
-		if(paciente.getId() == null || repository.findById(paciente.getId()) == null) {
-			throw new IllegalArgumentException("Paciente não encontrado.");
+		Paciente existente = findById(paciente.getId());
+
+		if (existente == null) {
+			throw new IllegalArgumentException("Paciente não encontrado!");
 		}
-		
-		return repository.update(paciente);
+
+		existente.setNome(paciente.getNome());
+		existente.setCpf(paciente.getCpf());
+		existente.setDataNascimento(paciente.getDataNascimento());
+		existente.setEndereco(paciente.getEndereco());
+		existente.setTelefone(paciente.getTelefone());
+		existente.setEmail(paciente.getEmail());
+
+		return pacienteRepository.save(existente);
 	}
-	
+
 	@Transactional
 	public void delete(Long id) {
-		repository.delete(id);
+		pacienteRepository.remove(findById(id));
 	}
 }

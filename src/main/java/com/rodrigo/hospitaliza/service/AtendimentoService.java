@@ -8,6 +8,7 @@ import com.rodrigo.hospitaliza.enums.PrioridadeEnum;
 import com.rodrigo.hospitaliza.enums.StatusEnum;
 import com.rodrigo.hospitaliza.model.Atendimento;
 import com.rodrigo.hospitaliza.model.Paciente;
+import com.rodrigo.hospitaliza.repository.AtendimentoRepository;
 import com.rodrigo.hospitaliza.repository.AtendimentoRepositoryDAO;
 import com.rodrigo.hospitaliza.repository.PacienteRepositoryDAO;
 
@@ -15,12 +16,14 @@ import com.rodrigo.hospitaliza.repository.PacienteRepositoryDAO;
 public class AtendimentoService {
 
 	@Inject
-	private AtendimentoRepositoryDAO repository;
+	private AtendimentoRepositoryDAO repositoryDAO;
+	
+	@Inject
+	private AtendimentoRepository atendimentoRepository;
 	
 	@Transactional
 	public Atendimento save(Atendimento atendimento) {
-		
-		repository.save(atendimento);
+		atendimentoRepository.save(atendimento);
 		return atendimento;
 	}
 	

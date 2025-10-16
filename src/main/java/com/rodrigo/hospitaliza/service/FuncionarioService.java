@@ -7,13 +7,13 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import com.rodrigo.hospitaliza.model.Funcionario;
-import com.rodrigo.hospitaliza.repository.FuncionarioRepository;
+import com.rodrigo.hospitaliza.repository.FuncionarioRepositoryDAO;
 
 @ApplicationScoped
 public class FuncionarioService {
 
 	@Inject
-	private FuncionarioRepository repository;
+	private FuncionarioRepositoryDAO repository;
 	
 	@Transactional
 	public Funcionario save(Funcionario funcionario) {

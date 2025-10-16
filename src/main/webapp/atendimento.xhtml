@@ -50,17 +50,25 @@
 				<p:inputText id="email" value="#{cadastroAtendimentoBean.paciente.email}" />
 			</p:panelGrid>
 
-			<p:outputLabel for="genero" value="Genêro" />
-			<p:selectOneRadio id="genero" layout="lineDirection" style="margin-bottom:10px">
-				<f:selectItem itemLabel="Masculino" itemValue="masculino" />
-				<f:selectItem itemLabel="Feminino" itemValue="feminino" />
+			<p:outputLabel for="genero" value="Gênero" />
+			<p:selectOneRadio id="genero" layout="lineDirection" style="margin-bottom:10px" value="#{cadastroAtendimentoBean.paciente.genero}">
+				<f:selectItem itemLabel="Masculino" itemValue="MASCULINO" />
+				<f:selectItem itemLabel="Feminino" itemValue="FEMININO" />
 			</p:selectOneRadio>
 
 			<div class="card-header" style="width: 436px">Informações para Consulta</div>
 			
+			<p:outputLabel for="tipo" value="Tipo do Atendimento"/>
+			<p:selectOneRadio id="tipo" layout="lineDirection" value="#{cadastroAtendimentoBean.atendimento.tipo}">
+				<f:selectItem itemLabel="Consulta" itemValue="CONSULTA"></f:selectItem>
+				<f:selectItem itemLabel="Triagem" itemValue="TRIAGEM"></f:selectItem>
+				<f:selectItem itemLabel="Cirurgia" itemValue="CIRURGIA"></f:selectItem>
+				<f:selectItem itemLabel="Exame" itemValue="EXAME"></f:selectItem>
+			</p:selectOneRadio>
+			
 			<p:panelGrid columns="1" styleClass="ui-noborder">
-				<p:outputLabel for="motivo" value="Motivo para Atendimento" />
-				<p:inputTextarea id="motivo" autoResize="true" style="width:400px" maxlength="255" value="#{cadastroAtendimentoBean.atendimento.motivoAtendimento}" />			
+				<p:outputLabel for="observacao" value="Observações" />
+				<p:inputTextarea id="observacao" autoResize="true" style="width:400px" maxlength="255" value="#{cadastroAtendimentoBean.atendimento.observacoes}" />			
 			</p:panelGrid>
 
 			<p:commandButton id="salvar" value="Salvar"

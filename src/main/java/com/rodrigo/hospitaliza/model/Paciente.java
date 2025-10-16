@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+
+import com.rodrigo.hospitaliza.enums.GeneroEnum;
 
 @Entity
 public class Paciente {
@@ -50,6 +54,9 @@ public class Paciente {
 	
 	@Email
 	private String email;
+
+	@Enumerated(EnumType.STRING)
+	private GeneroEnum genero;
 	
 	@OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Atendimento> atendimentos = new ArrayList<Atendimento>();
@@ -117,5 +124,13 @@ public class Paciente {
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	
+	public GeneroEnum getGenero() {
+		return genero;
+	}
+
+	public void setGenero(GeneroEnum genero) {
+		this.genero = genero;
 	}
 }

@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 import com.rodrigo.hospitaliza.enums.EspecialidadeEnum;
 import com.rodrigo.hospitaliza.enums.PrioridadeEnum;
 import com.rodrigo.hospitaliza.enums.StatusEnum;
+import com.rodrigo.hospitaliza.enums.TipoAtendimentoEnum;
 
 @Entity
 public class Atendimento {
@@ -42,40 +43,25 @@ public class Atendimento {
 	@Enumerated(EnumType.STRING)
 	private EspecialidadeEnum especialidade;
 	
-	@Column(name = "motivo_atendimento", length = 255)
-	@NotNull
-	private String motivoAtendimento; 
-	
 	@Column(name = "observacoes", length = 255)
 	private String observacoes;
+	
+	@Enumerated(EnumType.STRING)
+	@NotNull
+	private TipoAtendimentoEnum tipo;
 	
 	@ManyToOne
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
 	
-	public LocalDate getDataAtendimento() {
-		return dataAtendimento;
-	}
-
-	public void setDataAtendimento(LocalDate dataAtendimento) {
-		this.dataAtendimento = dataAtendimento;
-	}
-
-	public Paciente getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
-	}
-
+	
 	public Atendimento() {
 		
 	}
 
 	public Atendimento(Long id, LocalDate dataAtendimento, LocalTime horaDeChegada, LocalTime horaDeInicio,
 			LocalTime horaDeFim, PrioridadeEnum prioridade, StatusEnum status, EspecialidadeEnum especialidade,
-			String motivoAtendimento, String observacoes) {
+			@NotNull String motivoAtendimento, String observacoes, TipoAtendimentoEnum tipo, Paciente paciente) {
 		this.id = id;
 		this.dataAtendimento = dataAtendimento;
 		this.horaDeChegada = horaDeChegada;
@@ -84,8 +70,9 @@ public class Atendimento {
 		this.prioridade = prioridade;
 		this.status = status;
 		this.especialidade = especialidade;
-		this.motivoAtendimento = motivoAtendimento;
 		this.observacoes = observacoes;
+		this.tipo = tipo;
+		this.paciente = paciente;
 	}
 
 	public Long getId() {
@@ -96,11 +83,11 @@ public class Atendimento {
 		this.id = id;
 	}
 
-	public LocalDate getDataDoAtendimento() {
+	public LocalDate getDataAtendimento() {
 		return dataAtendimento;
 	}
 
-	public void setDataDoAtendimento(LocalDate dataAtendimento) {
+	public void setDataAtendimento(LocalDate dataAtendimento) {
 		this.dataAtendimento = dataAtendimento;
 	}
 
@@ -152,19 +139,27 @@ public class Atendimento {
 		this.especialidade = especialidade;
 	}
 
-	public String getMotivoAtendimento() {
-		return motivoAtendimento;
-	}
-
-	public void setMotivoAtendimento(String motivoAtendimento) {
-		this.motivoAtendimento = motivoAtendimento;
-	}
-
 	public String getObservacoes() {
 		return observacoes;
 	}
 
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
+	}
+
+	public TipoAtendimentoEnum getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoAtendimentoEnum tipo) {
+		this.tipo = tipo;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 }
