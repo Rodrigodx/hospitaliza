@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import com.rodrigo.hospitaliza.model.Atendimento;
 
 @ApplicationScoped
-public class AtendimentoRepository implements Serializable{
+public class AtendimentoRepositoryDAO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	

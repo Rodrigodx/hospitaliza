@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import com.rodrigo.hospitaliza.model.Funcionario;
 
 @ApplicationScoped
-public class FuncionarioRepository {
+public class FuncionarioRepositoryDAO {
 
 	@PersistenceContext(unitName = "hospitaliza-pu")
 	private EntityManager em;
