@@ -11,17 +11,15 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- As propriedades de source e target são a forma mais segura para JDK
-		8 -->
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>8.0.1</version>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<version>8.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -66,8 +64,8 @@
 			<groupId>org.apache.deltaspike.modules</groupId>
 			<artifactId>deltaspike-data-module-impl</artifactId>
 			<version>1.9.5</version>
+			<scope>runtime</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -77,13 +75,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
-				<!-- A configuração de source/target é lida das propriedades
-				acima,
-                 então a tag <configuration> aqui não é estritamente necessária,
-                 mas podemos deixá-la para clareza explícita. -->
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 			<plugin>

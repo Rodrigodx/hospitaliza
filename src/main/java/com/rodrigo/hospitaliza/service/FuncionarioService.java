@@ -1,6 +1,7 @@
 package com.rodrigo.hospitaliza.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
@@ -10,6 +11,7 @@ import javax.security.enterprise.AuthenticationStatus;
 import javax.security.enterprise.SecurityContext;
 import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
+import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
@@ -27,18 +29,23 @@ public class FuncionarioService {
 
 	@Inject
 	private SecurityContext securityContext;
+	
+	@Inject
+	private Pbkdf2PasswordHash passwordHash;
 
 	@Transactional
 	public Funcionario save(Funcionario funcionario) {
 		
 		String cpfComMascara = funcionario.getCpf();
+		String senhaComHash = passwordHash.generate(funcionario.getSenha().toCharArray());
 		
 		
 		
-		if(cpfComMascara != null) {
+		if(cpfComMascara != null && senhaComHash != null) {
 			String cpfFormatado = cpfComMascara.replaceAll("[^0-9]", "");
-
+			
 			funcionario.setCpf(cpfFormatado);
+			funcionario.setSenha(senhaComHash);
 			
 		}
 		
@@ -51,6 +58,10 @@ public class FuncionarioService {
 
 	public Funcionario findById(Long id) {
 		return repository.findBy(id);
+	}
+	
+	public Funcionario findByLogin(String login) {
+		return repository.findByLogin(login);
 	}
 
 	@Transactional

@@ -7,5 +7,6 @@ import com.rodrigo.hospitaliza.model.Funcionario;
 
 @Repository(forEntity = Funcionario.class)
 public interface FuncionarioRepository extends EntityRepository<Funcionario, Long>  {
-
+	
+	Funcionario findByLogin(String login);
 }
