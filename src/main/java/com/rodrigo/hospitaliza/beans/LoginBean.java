@@ -27,7 +27,6 @@ public class LoginBean {
 	public void authenticateUser() throws IOException {
 
 		System.out.println(login + " / " + senha);
-		System.out.println(executeUserAuthentication());
 		
 		AuthenticationStatus result = executeUserAuthentication();
 		if (result == AuthenticationStatus.SUCCESS) {

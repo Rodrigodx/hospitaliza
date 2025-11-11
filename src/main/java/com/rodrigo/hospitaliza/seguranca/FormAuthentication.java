@@ -21,6 +21,6 @@ import javax.security.enterprise.identitystore.PasswordHash;
 	    priority = 10
 	)*/
 @ApplicationScoped
-class FormAuthentication {
+public class FormAuthentication {
 
 }
