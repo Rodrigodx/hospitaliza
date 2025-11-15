@@ -17,9 +17,6 @@ import com.rodrigo.hospitaliza.service.FuncionarioService;
 
 @ApplicationScoped
 public class UserAuthenticator implements IdentityStore {
-
-	@Inject
-	private FuncionarioService service;
 	
 	@Inject
 	private FuncionarioRepository repository;

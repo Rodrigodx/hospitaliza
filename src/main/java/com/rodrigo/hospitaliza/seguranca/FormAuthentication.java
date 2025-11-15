@@ -13,13 +13,6 @@ import javax.security.enterprise.identitystore.PasswordHash;
 				errorPage = ""
 		)
 )
-/*@DatabaseIdentityStoreDefinition(
-	    dataSourceLookup = "java:jboss/datasources/HospitalizaDS",
-	    callerQuery = "SELECT senha FROM funcionario WHERE login = ?",
-	    groupsQuery = "SELECT funcao FROM funcionario WHERE login = ?",
-	    hashAlgorithm = PasswordHash.class,
-	    priority = 10
-	)*/
 @ApplicationScoped
 public class FormAuthentication {
 

@@ -2,6 +2,7 @@ package com.rodrigo.hospitaliza.beans;
 
 import java.io.Serializable;
 
+import javax.annotation.security.RolesAllowed;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,6 +21,7 @@ public class CadastroFuncionarioBean implements Serializable {
 	@Inject
 	private FuncionarioService service;
 	
+	@RolesAllowed("ADMIN")
 	public void cadastrar() {
 		service.save(funcionario);
 	}
