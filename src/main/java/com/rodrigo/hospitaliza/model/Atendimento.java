@@ -2,7 +2,10 @@ package com.rodrigo.hospitaliza.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import com.rodrigo.hospitaliza.enums.EspecialidadeEnum;
@@ -34,6 +38,10 @@ public class Atendimento {
 	
 	private LocalTime horaDeFim;
 	
+	private String senhaTriagem;
+	
+	private String senhaAtendimento;
+	
 	@Enumerated(EnumType.ORDINAL)
 	private PrioridadeEnum prioridade;
 	
@@ -54,19 +62,24 @@ public class Atendimento {
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
 	
+	@OneToMany(mappedBy = "atendimento", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Triagem> triagem = new ArrayList<Triagem>();
+	
 	
 	public Atendimento() {
 		
 	}
 
 	public Atendimento(Long id, LocalDate dataAtendimento, LocalTime horaDeChegada, LocalTime horaDeInicio,
-			LocalTime horaDeFim, PrioridadeEnum prioridade, StatusEnum status, EspecialidadeEnum especialidade,
+			LocalTime horaDeFim, String senhaTriagem, String senhaAtendimento, PrioridadeEnum prioridade, StatusEnum status, EspecialidadeEnum especialidade,
 			@NotNull String motivoAtendimento, String observacoes, TipoAtendimentoEnum tipo, Paciente paciente) {
 		this.id = id;
 		this.dataAtendimento = dataAtendimento;
 		this.horaDeChegada = horaDeChegada;
 		this.horaDeInicio = horaDeInicio;
 		this.horaDeFim = horaDeFim;
+		this.senhaTriagem = senhaTriagem;
+		this.senhaAtendimento = senhaAtendimento;
 		this.prioridade = prioridade;
 		this.status = status;
 		this.especialidade = especialidade;
@@ -113,6 +126,22 @@ public class Atendimento {
 
 	public void setHoraDeFim(LocalTime horaDeFim) {
 		this.horaDeFim = horaDeFim;
+	}
+	
+	public String getSenhaTriagem() {
+		return senhaTriagem;
+	}
+	
+	public void setSenhaTriagem(String senhaTriagem) {
+		this.senhaTriagem = senhaTriagem;
+	}
+	
+	public String getSenhaAtendimento() {
+		return senhaAtendimento;
+	}
+	
+	public void setSenhaAtendimento(String senhaAtendimento) {
+		this.senhaAtendimento = senhaAtendimento;
 	}
 
 	public PrioridadeEnum getPrioridade() {

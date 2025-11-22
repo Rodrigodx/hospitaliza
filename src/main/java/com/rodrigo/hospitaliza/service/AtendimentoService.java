@@ -21,10 +21,18 @@ public class AtendimentoService {
 	@Inject
 	private AtendimentoRepository atendimentoRepository;
 	
+	@Inject
+	private GeradorSenhaService geradorSenhaService;
+	
 	@Transactional
 	public Atendimento save(Atendimento atendimento) {
+		atendimento.setSenhaTriagem(geradorSenhaService.gerarSenhaTriagem());
 		atendimentoRepository.save(atendimento);
 		return atendimento;
+	}
+	
+	public Atendimento findById(Long id) {
+		return atendimentoRepository.findBy(id);
 	}
 	
 }
