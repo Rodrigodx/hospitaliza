@@ -24,10 +24,14 @@ public class AtendimentoService {
 	@Inject
 	private GeradorSenhaService geradorSenhaService;
 	
+	@Inject
+	private FilaTriagemService filaTriagemService;
+	
 	@Transactional
 	public Atendimento save(Atendimento atendimento) {
 		atendimento.setSenhaTriagem(geradorSenhaService.gerarSenhaTriagem());
-		atendimentoRepository.save(atendimento);
+		filaTriagemService.adicionarAtendimentoFila(atendimento);
+		atendimentoRepository.save(atendimento);		
 		return atendimento;
 	}
 	
