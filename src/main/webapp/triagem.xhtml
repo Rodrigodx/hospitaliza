@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+
+	<meta charset="UTF-8" />
+	<title>Cadastro de Funcionário</title>
+	<h:outputStylesheet name="style.css" library="css" />
+
+</h:head>
+
+<h:body>
+	<h:form id="form" styleClass="card-form">
+		<div class="card-header">Triagem</div>
+
+		<div class="section">
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="pressao" value="Pressão" style="paggind:none" />
+				<p:inputText id="pressao" value="" maxlength="5" required="true" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="temperatura" value="Temperatura"
+					style="paggind:none" />
+				<p:inputText id="temperatura" value="" maxlength="4" required="true" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="glicemia" value="Glicemia" style="paggind:none" />
+				<p:inputText id="glicemia" value="" maxlength="4" required="true" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="queixa" value="Queixa" style="paggind:none" />
+				<p:inputText id="queixa" value="" maxlength="80" required="true" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="historico" value="Histórico rápido"
+					style="paggind:none" />
+				<p:inputText id="historico" value="" maxlength="80" required="true" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="escala" value="Escala de dor"
+					style="paggind:none" />
+				<p:inputText id="escala" value="" maxlength="2" required="true" />
+			</p:panelGrid>
+
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="prioridade" value="Prioridade"
+					style="paggind:none" />
+				<p:inputText id="prioridade" value="" maxlength="80" required="true" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="especialidade" value="Especialidade"
+					style="paggind:none" />
+				<p:inputText id="especialidade"
+					value="#{cadastroFuncionarioBean.funcionario.funcao}"
+					maxlength="20" required="true" converter="#{funcaoEnumConverter}" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="observacao" value="Observação"
+					style="paggind:none" />
+				<p:inputText id="observacao" value="" maxlength="80" required="true" />
+			</p:panelGrid>
+
+			<p:commandButton id="salvar" value="Salvar"
+				actionListener="#{triagemBean.salvarTriagem}"
+				styleClass="btn" style="width:200px; margin-bottom:10px;" />
+
+			<p:commandButton id="chamarProximo" value="Chamar próximo paciente"
+				actionListener="#{triagemBean.chamarProximo}"
+				styleClass="btn" style="width:200px; margin-bottom:10px;" />
+		</div>
+	</h:form>
+</h:body>
+
+</html>
