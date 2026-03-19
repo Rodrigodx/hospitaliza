@@ -2,17 +2,17 @@ package com.rodrigo.hospitaliza.beans;
 
 import java.io.IOException;
 
-import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.security.enterprise.AuthenticationStatus;
-import javax.security.enterprise.SecurityContext;
-import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.security.enterprise.AuthenticationStatus;
+import jakarta.security.enterprise.SecurityContext;
+import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Named
 @RequestScoped
@@ -22,7 +22,7 @@ public class LoginBean {
 	private String senha;
 
 	@Inject
-	private SecurityContext _securityContext;
+	private SecurityContext securityContext;
 
 	public void authenticateUser() throws IOException {
 
@@ -43,7 +43,7 @@ public class LoginBean {
 
 	private AuthenticationStatus executeUserAuthentication() {
 		
-		return _securityContext.authenticate((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest(),
+		return securityContext.authenticate((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest(),
 				(HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(),
 				AuthenticationParameters.withParams().credential(new UsernamePasswordCredential(login, senha)));
 	}

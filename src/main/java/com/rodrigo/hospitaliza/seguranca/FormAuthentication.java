@@ -1,19 +1,15 @@
 package com.rodrigo.hospitaliza.seguranca;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
-import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
-import javax.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
-import javax.security.enterprise.identitystore.PasswordHash;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
+import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue;
 
 @CustomFormAuthenticationMechanismDefinition(
-		loginToContinue = @LoginToContinue(
-				loginPage = "/login.xhtml",
-				useForwardToLogin = false,
-				errorPage = ""
-		)
+    loginToContinue = @LoginToContinue(
+        loginPage = "/login.xhtml",
+        errorPage = "/login.xhtml"
+    )
 )
 @ApplicationScoped
 public class FormAuthentication {
-
 }

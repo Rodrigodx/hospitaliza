@@ -2,14 +2,14 @@ package com.rodrigo.hospitaliza.beans;
 
 import java.io.Serializable;
 
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import com.rodrigo.hospitaliza.model.Atendimento;
 import com.rodrigo.hospitaliza.model.Paciente;
 import com.rodrigo.hospitaliza.service.AtendimentoService;
 import com.rodrigo.hospitaliza.service.PacienteService;
+
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 @ViewScoped

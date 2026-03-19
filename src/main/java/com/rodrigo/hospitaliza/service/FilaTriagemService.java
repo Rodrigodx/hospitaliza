@@ -3,7 +3,7 @@ package com.rodrigo.hospitaliza.service;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import com.rodrigo.hospitaliza.model.Atendimento;
 
@@ -14,6 +14,12 @@ public class FilaTriagemService {
 	
 	public void adicionarAtendimentoFila(Atendimento atendiemento) {
 		filaAtendimento.offer(atendiemento);
+	}
+	
+	public Atendimento chamarProximo() {
+		Atendimento atendimento = filaAtendimento.poll();
+		
+		return atendimento;
 	}
 
 }

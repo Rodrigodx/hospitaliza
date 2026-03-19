@@ -1,40 +1,41 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-
 	<meta charset="UTF-8" />
 	<title>Hospitaliza</title>
 	<h:outputStylesheet name="style.css" library="css" />
-
 </h:head>
 
 <h:body>
-	<h:form id="form" styleClass="card-form">
-		<div class="card-header">Informações Pessoais</div>
+
+	<h:form prependId="false" styleClass="card-form">
+
+		<div class="card-header">Login</div>
 
 		<div class="section">
+
 			<p:panelGrid columns="1" styleClass="ui-noborder">
-				<p:outputLabel for="login" value="Login" style="paggind:none" />
-				<p:inputText id="login"
-					value="#{loginBean.login}" maxlength="80" />
+
+				<p:outputLabel for="j_username" value="Login" />
+				<p:inputText id="j_username" maxlength="80" />
+
 			</p:panelGrid>
 
 			<p:panelGrid columns="1" styleClass="ui-noborder">
-				<p:outputLabel for="senha" value="Senha" style="paggind:none" />
-				<p:inputText id="senha"
-					value="#{loginBean.senha}" maxlength="80" />
+
+				<p:outputLabel for="j_password" value="Senha" />
+				<p:password id="j_password" maxlength="80" />
+
 			</p:panelGrid>
 
-			<p:commandButton id="salvar" value="Salvar"
-				actionListener="#{loginBean.authenticateUser}"
-				styleClass="btn" style="width:200px; margin-bottom:10px;" />
+			<p:commandButton value="Entrar" ajax="false" styleClass="btn"
+				style="width:200px;margin-bottom:10px;" />
+
 		</div>
-	</h:form>
-</h:body>
 
+	</h:form>
+
+</h:body>
 </html>

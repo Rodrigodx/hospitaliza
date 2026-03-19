@@ -5,18 +5,18 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 import com.rodrigo.hospitaliza.enums.EspecialidadeEnum;
 import com.rodrigo.hospitaliza.enums.PrioridadeEnum;
@@ -30,16 +30,22 @@ public class Atendimento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "data_atendimento")
 	private LocalDate dataAtendimento = LocalDate.now();
 	
-	private LocalTime horaDeChegada = LocalTime.now(); 
+	@Column(name = "hora_chegada")
+	private LocalTime horaChegada = LocalTime.now();
 	
-	private LocalTime horaDeInicio; 
+	@Column(name = "hora_inicio")
+	private LocalTime horaInicio; 
 	
-	private LocalTime horaDeFim;
+	@Column(name = "hora_fim")
+	private LocalTime horaFim;
 	
+	@Column(name = "senha_triagem", nullable = false)
 	private String senhaTriagem;
 	
+	@Column(name = "senha_atendimento", nullable = false)
 	private String senhaAtendimento;
 	
 	@Enumerated(EnumType.ORDINAL)
@@ -70,14 +76,14 @@ public class Atendimento {
 		
 	}
 
-	public Atendimento(Long id, LocalDate dataAtendimento, LocalTime horaDeChegada, LocalTime horaDeInicio,
-			LocalTime horaDeFim, String senhaTriagem, String senhaAtendimento, PrioridadeEnum prioridade, StatusEnum status, EspecialidadeEnum especialidade,
+	public Atendimento(Long id, LocalDate dataAtendimento, LocalTime horaChegada, LocalTime horaInicio,
+			LocalTime horaFim, String senhaTriagem, String senhaAtendimento, PrioridadeEnum prioridade, StatusEnum status, EspecialidadeEnum especialidade,
 			@NotNull String motivoAtendimento, String observacoes, TipoAtendimentoEnum tipo, Paciente paciente) {
 		this.id = id;
 		this.dataAtendimento = dataAtendimento;
-		this.horaDeChegada = horaDeChegada;
-		this.horaDeInicio = horaDeInicio;
-		this.horaDeFim = horaDeFim;
+		this.horaChegada = horaChegada;
+		this.horaInicio = horaInicio;
+		this.horaFim = horaFim;
 		this.senhaTriagem = senhaTriagem;
 		this.senhaAtendimento = senhaAtendimento;
 		this.prioridade = prioridade;
@@ -104,28 +110,28 @@ public class Atendimento {
 		this.dataAtendimento = dataAtendimento;
 	}
 
-	public LocalTime getHoraDeChegada() {
-		return horaDeChegada;
+	public LocalTime getHoraChegada() {
+		return horaChegada;
 	}
 
-	public void setHoraDeChegada(LocalTime horaDeChegada) {
-		this.horaDeChegada = horaDeChegada;
+	public void setHoraChegada(LocalTime horaChegada) {
+		this.horaChegada = horaChegada;
 	}
 
-	public LocalTime getHoraDeInicio() {
-		return horaDeInicio;
+	public LocalTime getHoraInicio() {
+		return horaInicio;
 	}
 
-	public void setHoraDeInicio(LocalTime horaDeInicio) {
-		this.horaDeInicio = horaDeInicio;
+	public void setHoraInicio(LocalTime horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 
-	public LocalTime getHoraDeFim() {
-		return horaDeFim;
+	public LocalTime getHoraFim() {
+		return horaFim;
 	}
 
-	public void setHoraDeFim(LocalTime horaDeFim) {
-		this.horaDeFim = horaDeFim;
+	public void setHoraDeFim(LocalTime horaFim) {
+		this.horaFim = horaFim;
 	}
 	
 	public String getSenhaTriagem() {

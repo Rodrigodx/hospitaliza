@@ -2,14 +2,10 @@ package com.rodrigo.hospitaliza.beans;
 
 import java.io.Serializable;
 
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import com.rodrigo.hospitaliza.model.Paciente;
 import com.rodrigo.hospitaliza.service.PacienteService;
 
-
+import jakarta.inject.Inject;
 
 public class CadastroPacienteBean implements Serializable {
 

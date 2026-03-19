@@ -3,25 +3,20 @@ package com.rodrigo.hospitaliza.service;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import com.rodrigo.hospitaliza.model.Paciente;
 import com.rodrigo.hospitaliza.repository.PacienteRepositoryDAO;
-import com.rodrigo.hospitaliza.repository.PacienteRepository;
 
 @ApplicationScoped
 public class PacienteService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * @Inject private PacienteRepositoryDAO repository;
-	 */
-
-	@Inject
-	private PacienteRepository pacienteRepository;
+	@Inject 
+	private PacienteRepositoryDAO pacienteRepository;
 
 	@Transactional
 	public Paciente save(Paciente paciente) {
@@ -42,11 +37,11 @@ public class PacienteService implements Serializable {
 	}
 
 	public Paciente findById(Long id) {
-		return pacienteRepository.findBy(id);
+		return pacienteRepository.findById(id);
 	}
 
 	public Paciente findByCPF(String cpf) {
-		return pacienteRepository.findByCpf(cpf);
+		return pacienteRepository.findByCPF(cpf);
 	}
 
 	@Transactional
@@ -69,6 +64,6 @@ public class PacienteService implements Serializable {
 
 	@Transactional
 	public void delete(Long id) {
-		pacienteRepository.remove(findById(id));
+		pacienteRepository.delete(id);
 	}
 }

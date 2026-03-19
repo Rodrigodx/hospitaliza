@@ -1,11 +1,14 @@
 package com.rodrigo.hospitaliza.repository;
 
+import java.security.Principal;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.security.enterprise.SecurityContext;
+import jakarta.transaction.Transactional;
 
 import com.rodrigo.hospitaliza.model.Funcionario;
 
@@ -14,6 +17,9 @@ public class FuncionarioRepositoryDAO {
 
 	@PersistenceContext(unitName = "hospitaliza-pu")
 	private EntityManager em;
+	
+	@Inject
+	private SecurityContext context;
 	
 	@Transactional
 	public Funcionario save(Funcionario funcionario) {
@@ -29,6 +35,10 @@ public class FuncionarioRepositoryDAO {
 		return em.find(Funcionario.class, id);
 	}
 	
+	public Funcionario findByLogin(String login) {
+		return em.find(Funcionario.class, login);
+	}
+	
 	@Transactional
 	public Funcionario update(Funcionario funcionario) {
 		return em.merge(funcionario);
@@ -38,5 +48,14 @@ public class FuncionarioRepositoryDAO {
 	public void delete(Long id) {
 		Funcionario funcionario = findById(id);
 		em.remove(funcionario);
+	}
+
+	public Funcionario getUserLogged() {
+		Principal principal = context.getCallerPrincipal();
+		if(principal != null) {
+			String login = principal.getName();
+			return em.find(Funcionario.class, login);
+		}
+		return null;
 	}
 }

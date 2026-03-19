@@ -10,12 +10,15 @@
 
 		<class>com.rodrigo.hospitaliza.model.Paciente</class>
 		<class>com.rodrigo.hospitaliza.model.Funcionario</class>
+		<class>com.rodrigo.hospitaliza.model.Atendimento</class>
+		<class>com.rodrigo.hospitaliza.model.Triagem</class>
 		
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 			<property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.default_schema" value="hospitaliza"/>
 		</properties>
 	</persistence-unit>
 </persistence>

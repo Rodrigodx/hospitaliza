@@ -1,32 +1,30 @@
 package com.rodrigo.hospitaliza.service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.security.enterprise.AuthenticationStatus;
-import javax.security.enterprise.SecurityContext;
-import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
-import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Transactional;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.AuthenticationStatus;
+import jakarta.security.enterprise.SecurityContext;
+import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.transaction.Transactional;
 import com.rodrigo.hospitaliza.model.Funcionario;
-import com.rodrigo.hospitaliza.repository.FuncionarioRepository;
+import com.rodrigo.hospitaliza.repository.FuncionarioRepositoryDAO;
 
 @ApplicationScoped
 public class FuncionarioService {
 
-	/*@Inject
-	private FuncionarioRepositoryDAO repository;*/
-	
 	@Inject
-	private FuncionarioRepository repository;
-
+	private FuncionarioRepositoryDAO repository;
+	
 	@Inject
 	private SecurityContext securityContext;
 	
@@ -51,13 +49,17 @@ public class FuncionarioService {
 		
 		return repository.save(funcionario);
 	}
+	
+	public Funcionario getUserLogged() {
+		return repository.getUserLogged();
+	}
 
 	public List<Funcionario> findAll() {
 		return repository.findAll();
 	}
 
 	public Funcionario findById(Long id) {
-		return repository.findBy(id);
+		return repository.findById(id);
 	}
 	
 	public Funcionario findByLogin(String login) {
@@ -83,6 +85,6 @@ public class FuncionarioService {
 
 	@Transactional
 	public void delete(Long id) {
-		repository.remove(findById(id));
+		repository.delete(id);
 	}
 }

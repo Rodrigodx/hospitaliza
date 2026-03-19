@@ -3,10 +3,10 @@ package com.rodrigo.hospitaliza.repository;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 import com.rodrigo.hospitaliza.model.Atendimento;
 
@@ -28,9 +28,12 @@ public class AtendimentoRepositoryDAO implements Serializable{
 		return atendimento;
 	}
 	
-	
 	public List<Atendimento> findAll(){
 		return em.createQuery("From Atendimento", Atendimento.class).getResultList();
+	}
+	
+	public Atendimento findById(Long id) {
+		return em.find(Atendimento.class, id);
 	}
 	
 	
