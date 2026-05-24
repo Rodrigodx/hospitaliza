@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.security.enterprise.SecurityContext;
 import jakarta.transaction.Transactional;
@@ -36,7 +37,14 @@ public class FuncionarioRepositoryDAO {
 	}
 	
 	public Funcionario findByLogin(String login) {
-		return em.find(Funcionario.class, login);
+		try {
+			return em.createQuery(
+					"SELECT f FROM Funcionario f WHERE f.login = :login", Funcionario.class)
+					.setParameter("login", login)
+					.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 	
 	@Transactional

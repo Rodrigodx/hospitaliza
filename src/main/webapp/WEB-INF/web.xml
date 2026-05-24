@@ -10,10 +10,6 @@
 		<param-value>nova-light</param-value>
 	</context-param>
 
-	<login-config>
-		<auth-method>FORM</auth-method>
-	</login-config>
-
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>

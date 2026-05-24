@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Hospitaliza</title>
+	<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
+	<h:outputStylesheet name="painel.css" library="css" />
+</h:head>
+
+<h:body>
+	<div class="painel-container">
+		<div class="grid grid-nogutter header-chamada">
+			<div class="col-8 principal-senha">
+				<p:outputPanel id="painelAtual">
+					<span class="label-topo">senha</span>
+					<h1 class="senha-destaque">#{painelBean.atual.senha}</h1>
+					<h2 class="nome-paciente">#{painelBean.atual.paciente}</h2>
+				</p:outputPanel>
+			</div>
+			<div class="col-4 principal-sala">
+				<span class="label-topo">Sala</span>
+				<div class="numero-sala">10</div>
+			</div>
+		</div>
+
+		<div class="grid grid-nogutter corpo-historico">
+			<div class="col-12">
+				<div class="titulo-historico">Histórico de chamados</div>
+				<p:dataTable id="historicoTabela" value="#{painelBean.historico}" var="h"
+					styleClass="tabela-invisivel">
+					<p:column headerText="Senha" styleClass="text-center">
+						<h:outputText value="#{h.senha}" />
+					</p:column>
+					<p:column headerText="Paciente">
+						<h:outputText value="#{h.paciente}" />
+					</p:column>
+					<p:column headerText="Sala" styleClass="text-center">
+						<h:outputText value="#{h.sala}" />
+					</p:column>
+					<p:column headerText="Horário da Chamada" styleClass="text-center">
+						<h:outputText value="#{h.horario}" />
+					</p:column>
+				</p:dataTable>
+			</div>
+		</div>
+
+		<div class="grid grid-nogutter footer-painel">
+			<div class="col-3 clock-container">
+				<p:clock pattern="HH:mm - dd/MM" styleClass="clock" />
+			</div>
+			<div class="col-9 marquee-container">
+				<div class="info-texto">Centro de especialidades em saúde -
+					CES</div>
+			</div>
+		</div>
+	</div>
+	
+	<p:remoteCommand name="atualizarPainelRemote" 
+                 action="#{painelBean.processarChamadaSocket}" 
+                 update="painelAtual historicoTabela" />
+	
+</h:body>
+<h:outputScript>
+    var ws = new WebSocket("ws://" + location.host + "/hospitaliza/painel/geral");
+    
+    ws.onmessage = function(event) {
+        var dados = JSON.parse(event.data);
+        
+        // Passando parâmetros para o back-end via RemoteCommand
+        atualizarPainelRemote([
+            {name: 'senha', value: dados.senha},
+            {name: 'paciente', value: dados.paciente},
+            {name: 'sala', value: dados.sala}
+        ]);
+    };
+
+    ws.onerror = function(event) {
+        console.error("Erro no WebSocket: ", event);
+    };
+</h:outputScript>
+</html>

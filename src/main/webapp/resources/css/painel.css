@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+}
+
+.header-chamada {
+    height: 40vh; 
+    color: white;
+}
+
+.principal-senha {
+    background-color: #1565C0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5%;
+}
+
+.principal-sala {
+    background-color: #FFFFFF;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 2px solid #ddd;
+}
+
+.senha-destaque { font-size: 8rem; margin: 0; color: #FF9800; }
+.nome-paciente { font-size: 4rem; margin: 0; text-transform: uppercase; }
+.numero-sala { font-size: 10rem; font-weight: bold; }
+
+.titulo-historico {
+    background: #ddd;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+    color: #666;
+}
+
+.footer-painel {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 8vh;
+    background-color: #1565C0;
+    color: white;
+    align-items: center;
+}
+
+.clock-container {
+    background-color: #E64A19;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.clock {
+	background-color: #E64A19;
+}
+
+
+.tabela-invisivel.ui-datatable thead th { background: none; border: none; color: #1565C0; }
+.tabela-invisivel.ui-datatable tr.ui-widget-content { border: none; font-size: 1.5rem; }

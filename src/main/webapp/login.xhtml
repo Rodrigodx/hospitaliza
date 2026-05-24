@@ -9,30 +9,30 @@
 </h:head>
 
 <h:body>
-
 	<h:form prependId="false" styleClass="card-form">
 
 		<div class="card-header">Login</div>
 
 		<div class="section">
+			<p:messages id="messages" showDetail="false" closable="true">
+				<p:autoUpdate />
+			</p:messages>
 
 			<p:panelGrid columns="1" styleClass="ui-noborder">
-
-				<p:outputLabel for="j_username" value="Login" />
-				<p:inputText id="j_username" maxlength="80" />
-
+				<p:outputLabel for="username" value="Login" />
+				<p:inputText id="username" value="#{loginBean.login}" maxlength="80"
+					required="true" />
 			</p:panelGrid>
 
 			<p:panelGrid columns="1" styleClass="ui-noborder">
-
-				<p:outputLabel for="j_password" value="Senha" />
-				<p:password id="j_password" maxlength="80" />
-
+				<p:outputLabel for="password" value="Senha" />
+				<p:password id="password" value="#{loginBean.senha}" maxlength="80"
+					required="true" />
 			</p:panelGrid>
 
-			<p:commandButton value="Entrar" ajax="false" styleClass="btn"
+			<p:commandButton value="Entrar"
+				action="#{loginBean.authenticateUser}" ajax="false" styleClass="btn"
 				style="width:200px;margin-bottom:10px;" />
-
 		</div>
 
 	</h:form>

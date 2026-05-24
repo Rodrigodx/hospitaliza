@@ -14,72 +14,86 @@
 </h:head>
 
 <h:body>
+	<h:outputText value="Usuário Logado: #{request.userPrincipal.name}" />
 	<h:form id="form" styleClass="card-form">
-		<div class="card-header">Triagem</div>
+		<p:growl id="msgs" showDetail="true" />
+	
+		<div class="card-header">Triagem de Paciente</div>
 
 		<div class="section">
-
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="pressao" value="Pressão" style="paggind:none" />
-				<p:inputText id="pressao" value="" maxlength="5" required="true" />
+
+				<p:inputText id="pressao" value="#{triagemBean.triagem.pressao}" maxlength="5" required="true" />
 			</p:panelGrid>
 
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="temperatura" value="Temperatura"
 					style="paggind:none" />
-				<p:inputText id="temperatura" value="" maxlength="4" required="true" />
+
+				<p:inputText id="temperatura" value="#{triagemBean.triagem.temperatura}" maxlength="4" required="true" />
 			</p:panelGrid>
 
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="glicemia" value="Glicemia" style="paggind:none" />
-				<p:inputText id="glicemia" value="" maxlength="4" required="true" />
+
+				<p:inputText id="glicemia" value="#{triagemBean.triagem.glicemia}" maxlength="4" required="true" />
 			</p:panelGrid>
 
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="queixa" value="Queixa" style="paggind:none" />
-				<p:inputText id="queixa" value="" maxlength="80" required="true" />
+
+				<p:inputText id="queixa" value="#{triagemBean.triagem.queixa}" maxlength="80" required="true" />
 			</p:panelGrid>
 
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="historico" value="Histórico rápido"
 					style="paggind:none" />
-				<p:inputText id="historico" value="" maxlength="80" required="true" />
+
+				<p:inputText id="historico" value="#{triagemBean.triagem.historicoRapido}" maxlength="80" required="true" />
 			</p:panelGrid>
+
+
 
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="escala" value="Escala de dor"
 					style="paggind:none" />
-				<p:inputText id="escala" value="" maxlength="2" required="true" />
-			</p:panelGrid>
 
+				<p:inputText id="escala" value="#{triagemBean.triagem.escalaDor}" maxlength="2" required="true" />
+			</p:panelGrid>
 
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="prioridade" value="Prioridade"
 					style="paggind:none" />
-				<p:inputText id="prioridade" value="" maxlength="80" required="true" />
+				<p:inputText id="prioridade" value="#{triagemBean.atendimentoAtual.prioridade}" maxlength="80" required="true" />
 			</p:panelGrid>
-
+			
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="especialidade" value="Especialidade"
 					style="paggind:none" />
+
 				<p:inputText id="especialidade"
-					value="#{cadastroFuncionarioBean.funcionario.funcao}"
-					maxlength="20" required="true" converter="#{funcaoEnumConverter}" />
+					value="#{triagemBean.atendimentoAtual.especialidade}"
+					maxlength="20" required="true" converter="#{especialidadeEnumConverter}" />
 			</p:panelGrid>
 
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="observacao" value="Observação"
 					style="paggind:none" />
-				<p:inputText id="observacao" value="" maxlength="80" required="true" />
+
+				<p:inputText id="observacao" value="#{triagemBean.triagem.observaçoes}" maxlength="80" required="true" />
 			</p:panelGrid>
 
-			<p:commandButton id="salvar" value="Salvar"
-				actionListener="#{triagemBean.salvarTriagem}"
+			<p:separator />
+
+			<p:commandButton id="salvar" value="Salvar Triagem"
+				actionListener="#{triagemBean.salvarTriagem}" update="@form"
 				styleClass="btn" style="width:200px; margin-bottom:10px;" />
 
 			<p:commandButton id="chamarProximo" value="Chamar próximo paciente"
-				actionListener="#{triagemBean.chamarProximo}"
-				styleClass="btn" style="width:200px; margin-bottom:10px;" />
+				actionListener="#{triagemBean.chamarProximo}" process="@this"
+				styleClass="btn"
+				style="width:200px; margin-bottom:10px; background-color: #4CAF50;" />
 		</div>
 	</h:form>
 </h:body>

@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="jakarta.faces.facelets">
-      
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="jakarta.faces.facelets">
+
 <h:head>
 
 	<meta charset="UTF-8" />
@@ -18,57 +16,75 @@
 		<div class="card-header">Informações Pessoais</div>
 
 		<div class="section">
-			<p:panelGrid columns="1" styleClass="ui-noborder">			
+			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="nome" value="Nome" style="paggind:none" />
-				<p:inputText id="nome" value="#{cadastroAtendimentoBean.paciente.nome}" maxlength="80" />
+				<p:inputText id="nome"
+					value="#{cadastroAtendimentoBean.paciente.nome}" maxlength="80" />
 			</p:panelGrid>
 
-			<p:panelGrid columns="1" styleClass="ui-noborder">			
+			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="cpf" value="CPF" />
 				<p:inputMask value="#{cadastroAtendimentoBean.paciente.cpf}"
-				mask="999.999.999-99" id="cpf" maxlength="11"/>
-			</p:panelGrid>
-			
-			<p:panelGrid columns="1" styleClass="ui-noborder">			
-				<p:outputLabel for="data_nascimento" value="Data de Nascimento" />
-				<p:calendar id="data_nascimento" pattern="dd/MM/yyyy" mask="true"
-					value="#{cadastroAtendimentoBean.paciente.dataNascimento}"/>
-			</p:panelGrid>	
-			
-			<p:panelGrid columns="1" styleClass="ui-noborder">			
-				<p:outputLabel for="endereco" value="Endereço" />
-				<p:inputText id="endereco" value="#{cadastroAtendimentoBean.paciente.endereco}" />
-			</p:panelGrid>
-			
-			<p:panelGrid columns="1" styleClass="ui-noborder">			
-				<p:outputLabel for="telefone" value="Telefone" />
-				<p:inputMask mask="(99) 9 9999-9999" id="telefone" value="#{cadastroAtendimentoBean.paciente.telefone}" />
+					mask="999.999.999-99" id="cpf" maxlength="14" required="true" />
 			</p:panelGrid>
 
-			<p:panelGrid columns="1" styleClass="ui-noborder">			
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="data_nascimento" value="Data de Nascimento" />
+				<p:datePicker id="data_nascimento" 
+                      value="#{cadastroAtendimentoBean.paciente.dataNascimento}" 
+                      pattern="dd/MM/yyyy"
+                      mask="true"
+                      locale="pt_BR"
+                      monthNavigator="true" 
+                      yearNavigator="true" 
+                      yearRange="1900:2026"
+                      showIcon="true"
+                      maxdate="#{cadastroBean.hoje}" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="endereco" value="Endereço" />
+				<p:inputText id="endereco"
+					value="#{cadastroAtendimentoBean.paciente.endereco}" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
+				<p:outputLabel for="telefone" value="Telefone" />
+				<p:inputMask mask="(99) 9 9999-9999" id="telefone"
+					value="#{cadastroAtendimentoBean.paciente.telefone}" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="email" value="E-mail" />
-				<p:inputText id="email" value="#{cadastroAtendimentoBean.paciente.email}" />
+				<p:inputText id="email"
+					value="#{cadastroAtendimentoBean.paciente.email}" />
 			</p:panelGrid>
 
 			<p:outputLabel for="genero" value="Gênero" />
-			<p:selectOneRadio id="genero" layout="lineDirection" style="margin-bottom:10px" value="#{cadastroAtendimentoBean.paciente.genero}">
+			<p:selectOneRadio id="genero" layout="lineDirection"
+				style="margin-bottom:10px"
+				value="#{cadastroAtendimentoBean.paciente.genero}">
 				<f:selectItem itemLabel="Masculino" itemValue="MASCULINO" />
 				<f:selectItem itemLabel="Feminino" itemValue="FEMININO" />
 			</p:selectOneRadio>
 
-			<div class="card-header" style="width: 436px">Informações para Consulta</div>
-			
-			<p:outputLabel for="tipo" value="Tipo do Atendimento"/>
-			<p:selectOneRadio id="tipo" layout="lineDirection" value="#{cadastroAtendimentoBean.atendimento.tipo}">
+			<div class="card-header" style="width: 436px">Informações para
+				Consulta</div>
+
+			<p:outputLabel for="tipo" value="Tipo do Atendimento" />
+			<p:selectOneRadio id="tipo" layout="lineDirection"
+				value="#{cadastroAtendimentoBean.atendimento.tipo}">
 				<f:selectItem itemLabel="Consulta" itemValue="CONSULTA"></f:selectItem>
 				<f:selectItem itemLabel="Triagem" itemValue="TRIAGEM"></f:selectItem>
 				<f:selectItem itemLabel="Cirurgia" itemValue="CIRURGIA"></f:selectItem>
 				<f:selectItem itemLabel="Exame" itemValue="EXAME"></f:selectItem>
 			</p:selectOneRadio>
-			
+
 			<p:panelGrid columns="1" styleClass="ui-noborder">
 				<p:outputLabel for="observacao" value="Observações" />
-				<p:inputTextarea id="observacao" autoResize="true" style="width:400px" maxlength="255" value="#{cadastroAtendimentoBean.atendimento.observacoes}" />			
+				<p:inputTextarea id="observacao" autoResize="true"
+					style="width:400px" maxlength="255"
+					value="#{cadastroAtendimentoBean.atendimento.observacoes}" />
 			</p:panelGrid>
 
 			<p:commandButton id="salvar" value="Salvar"

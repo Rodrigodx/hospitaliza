@@ -1,5 +1,6 @@
 package com.rodrigo.hospitaliza.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,22 +35,21 @@ public class Paciente {
 	private String nome;
 	
 	@Pattern(regexp = "(^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$)|(^\\d{11}$)", message = "CPF deve seguir o formato XXX.XXX.XXX-XX ou ser apenas números")
-	@Column(name = "cpf", nullable = false, length = 11)
+	@Column(name = "cpf", nullable = false, length = 12)
 	@NotNull
 	private String cpf;
 	
 	@Past
-	@Temporal(TemporalType.DATE)
 	@NotNull
 	@Column(name = "data_nascimento", nullable = false)
-	private Date dataNascimento;
+	private LocalDate dataNascimento;
 	
 	@NotNull
 	@Column(name = "endereco", nullable = false, length = 80)
 	private String endereco;
 	
 	@NotNull
-	@Column(name = "telefone", nullable = false, length = 12)
+	@Column(name = "telefone", nullable = false, length = 20)
 	private String telefone;
 	
 	@Email
@@ -118,11 +118,11 @@ public class Paciente {
 		this.cpf = cpf;
 	}
 
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	

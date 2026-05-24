@@ -17,6 +17,9 @@ public class PacienteService implements Serializable {
 
 	@Inject 
 	private PacienteRepositoryDAO pacienteRepository;
+	
+	@Inject
+	private ConverterDateService convertDate;
 
 	@Transactional
 	public Paciente save(Paciente paciente) {
@@ -28,7 +31,7 @@ public class PacienteService implements Serializable {
 
 			paciente.setCpf(cpfFormatado);
 		}
-
+		
 		return pacienteRepository.save(paciente);
 	}
 

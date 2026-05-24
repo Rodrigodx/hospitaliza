@@ -12,14 +12,14 @@ public class FilaTriagemService {
 	
 	private Queue<Atendimento> filaAtendimento = new ConcurrentLinkedQueue<Atendimento>();
 	
-	public void adicionarAtendimentoFila(Atendimento atendiemento) {
-		filaAtendimento.offer(atendiemento);
+	public void adicionarAtendimentoFila(Atendimento atendimento) {
+		filaAtendimento.offer(atendimento);
+		System.out.println("Adicionado na fila");
 	}
 	
 	public Atendimento chamarProximo() {
 		Atendimento atendimento = filaAtendimento.poll();
-		
+		System.out.println("Chamando: " + atendimento.getPaciente().getNome());
 		return atendimento;
 	}
-
 }
