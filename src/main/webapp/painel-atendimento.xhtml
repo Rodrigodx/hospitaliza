@@ -8,7 +8,8 @@
 <h:head>
 	<meta charset="UTF-8" />
 	<title>Hospitaliza</title>
-	<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
+	<link rel="stylesheet"
+		href="https://unpkg.com/primeflex@latest/primeflex.css" />
 	<h:outputStylesheet name="painel.css" library="css" />
 </h:head>
 
@@ -31,8 +32,8 @@
 		<div class="grid grid-nogutter corpo-historico">
 			<div class="col-12">
 				<div class="titulo-historico">Histórico de chamados</div>
-				<p:dataTable id="historicoTabela" value="#{painelBean.historico}" var="h"
-					styleClass="tabela-invisivel">
+				<p:dataTable id="historicoTabela" value="#{painelBean.historico}"
+					var="h" styleClass="tabela-invisivel">
 					<p:column headerText="Senha" styleClass="text-center">
 						<h:outputText value="#{h.senha}" />
 					</p:column>
@@ -41,9 +42,6 @@
 					</p:column>
 					<p:column headerText="Sala" styleClass="text-center">
 						<h:outputText value="#{h.sala}" />
-					</p:column>
-					<p:column headerText="Horário da Chamada" styleClass="text-center">
-						<h:outputText value="#{h.horario}" />
 					</p:column>
 				</p:dataTable>
 			</div>
@@ -59,28 +57,12 @@
 			</div>
 		</div>
 	</div>
-	
-	<p:remoteCommand name="atualizarPainelRemote" 
-                 action="#{painelBean.processarChamadaSocket}" 
-                 update="painelAtual historicoTabela" />
-	
-</h:body>
-<h:outputScript>
-    var ws = new WebSocket("ws://" + location.host + "/hospitaliza/painel/geral");
-    
-    ws.onmessage = function(event) {
-        var dados = JSON.parse(event.data);
-        
-        // Passando parâmetros para o back-end via RemoteCommand
-        atualizarPainelRemote([
-            {name: 'senha', value: dados.senha},
-            {name: 'paciente', value: dados.paciente},
-            {name: 'sala', value: dados.sala}
-        ]);
-    };
 
-    ws.onerror = function(event) {
-        console.error("Erro no WebSocket: ", event);
-    };
-</h:outputScript>
+	<h:form id="formPoll">
+		<p:poll interval="2" 
+				listener="#{painelBean.verificarNovasChamadas}" 
+				update=":painelAtual :historicoTabela" />
+	</h:form>
+
+</h:body>
 </html>

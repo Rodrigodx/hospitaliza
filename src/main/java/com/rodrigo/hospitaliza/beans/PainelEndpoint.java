@@ -7,6 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.rodrigo.hospitaliza.dtos.ChamadaEvent;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.websocket.OnClose;
@@ -16,6 +17,7 @@ import jakarta.websocket.Session;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 
+@ApplicationScoped
 @ServerEndpoint("/painel/{canal}")
 public class PainelEndpoint {
 

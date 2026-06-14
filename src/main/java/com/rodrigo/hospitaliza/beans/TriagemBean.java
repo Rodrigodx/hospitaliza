@@ -10,6 +10,7 @@ import com.rodrigo.hospitaliza.dtos.ChamadaEvent;
 import com.rodrigo.hospitaliza.model.Atendimento;
 import com.rodrigo.hospitaliza.model.Triagem;
 import com.rodrigo.hospitaliza.service.FilaTriagemService;
+import com.rodrigo.hospitaliza.service.PainelManager;
 import com.rodrigo.hospitaliza.service.TriagemService;
 
 @Named
@@ -29,6 +30,9 @@ public class TriagemBean implements Serializable{
 	private FilaTriagemService filaService;
 	
 	@Inject
+	private PainelManager painelManager;
+	
+	@Inject
 	private Event<ChamadaEvent> event; 
 	
 	public void salvarTriagem() {
@@ -44,8 +48,13 @@ public class TriagemBean implements Serializable{
 		atendimentoAtual = filaService.chamarProximo();
 		
 		if(atendimentoAtual != null) {
-			event.fire(new ChamadaEvent(atendimentoAtual.getSenhaTriagem(), atendimentoAtual.getPaciente().getNome(), "10"));
-		}
+			ChamadaEvent novoChamado = new ChamadaEvent(atendimentoAtual.getSenhaTriagem(),
+					atendimentoAtual.getPaciente().getNome(),
+					"10");
+			
+			painelManager.setUltimoChamado(novoChamado);
+			System.out.println(">>> [TRIAGEM] Paciente enviado para a memória global: " + novoChamado.getPaciente());
+		}			
 	}
 
 	public Triagem getTriagem() {

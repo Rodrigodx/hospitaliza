@@ -15,4 +15,11 @@ public class ChamadaEvent {
     public String getSenha() { return senha; }
     public String getPaciente() { return paciente; }
     public String getSala() { return sala; }
+
+	@Override
+	public String toString() {
+		return "ChamadaEvent [senha=" + senha + ", paciente=" + paciente + ", sala=" + sala + "]";
+	}
+    
+    
 }
