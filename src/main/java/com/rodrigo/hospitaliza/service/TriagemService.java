@@ -22,12 +22,8 @@ public class TriagemService {
 	@Transactional
 	public Triagem save(Triagem triagem, Atendimento atendimentoAtual) {
 
-		System.out.println("=== [DEBUG SERVICE] SALVANDO TRIAGEM ===");
-
 		if (usuarioLogado.isLogado()) {
 			Funcionario logado = usuarioLogado.getFuncionario();
-			System.out.println(">>> DEBUG: Funcionário capturado da sessão manual: " + logado.getNome() + " (ID: "
-					+ logado.getId() + ")");
 
 			triagem.setFuncionario(logado);
 		} else {

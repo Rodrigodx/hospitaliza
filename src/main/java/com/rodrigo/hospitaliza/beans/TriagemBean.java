@@ -53,7 +53,6 @@ public class TriagemBean implements Serializable{
 					"10");
 			
 			painelManager.setUltimoChamado(novoChamado);
-			System.out.println(">>> [TRIAGEM] Paciente enviado para a memória global: " + novoChamado.getPaciente());
 		}			
 	}
 
@@ -71,5 +70,13 @@ public class TriagemBean implements Serializable{
 
 	public void setAtendimentoAtual(Atendimento atendimentoAtual) {
 		this.atendimentoAtual = atendimentoAtual;
+	}
+
+	public Event<ChamadaEvent> getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event<ChamadaEvent> event) {
+		this.event = event;
 	}
 }

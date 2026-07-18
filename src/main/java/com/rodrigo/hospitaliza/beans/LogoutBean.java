@@ -8,7 +8,7 @@ import jakarta.inject.Named;
 
 @Named
 @RequestScoped
-public class Logout {
+public class LogoutBean {
 
 	public void submit () throws IOException {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();

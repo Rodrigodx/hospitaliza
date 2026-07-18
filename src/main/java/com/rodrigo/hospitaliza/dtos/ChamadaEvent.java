@@ -19,7 +19,5 @@ public class ChamadaEvent {
 	@Override
 	public String toString() {
 		return "ChamadaEvent [senha=" + senha + ", paciente=" + paciente + ", sala=" + sala + "]";
-	}
-    
-    
+	}  
 }
